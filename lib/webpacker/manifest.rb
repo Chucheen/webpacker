@@ -23,7 +23,8 @@ class Webpacker::Manifest
 
     manifest_pack_type = manifest_type(pack_type[:type])
     manifest_pack_name = manifest_name(name, manifest_pack_type)
-    find("entrypoints")[manifest_pack_name][manifest_pack_type]
+    data[manifest_pack_name].select { |name| name.include?(".#{manifest_pack_type}") }
+    #find("entrypoints")[manifest_pack_name][manifest_pack_type]
   rescue NoMethodError
     nil
   end
